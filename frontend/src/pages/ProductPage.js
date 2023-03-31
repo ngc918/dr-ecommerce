@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import {
 	Row,
 	Col,
@@ -17,6 +17,7 @@ import { listProductsDetails } from "../actions/productActions";
 
 function ProductPage() {
 	const { _id } = useParams();
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const productDetails = useSelector((state) => state.productDetails);
 	const { loading, error, product } = productDetails;
@@ -28,7 +29,7 @@ function ProductPage() {
 	}, [_id, dispatch]);
 
 	const addToCartHandler = () => {
-		console.log("Add to cart:");
+		navigate(`/cart/${_id}?qty=${qty}`);
 	};
 
 	return (

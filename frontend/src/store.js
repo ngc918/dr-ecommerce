@@ -6,10 +6,12 @@ import {
 	productListReducers,
 	productDetailsReducers,
 } from "./reducers/productReducers";
+import { cartReducer } from "./reducers/cartReducers";
 
 const reducers = combineReducers({
 	productList: productListReducers,
 	productDetails: productDetailsReducers,
+	cart: cartReducer,
 });
 
 const initialState = {};
