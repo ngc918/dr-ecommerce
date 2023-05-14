@@ -49,3 +49,5 @@ export const listProductsDetails = (id) => async (dispatch) => {
 		});
 	}
 };
+
+console.log();
