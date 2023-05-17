@@ -21,6 +21,7 @@ function LoginPage() {
 
 	const submitHandler = (e) => {
 		e.preventDefault();
+		console.log("Submitted");
 		dispatch(login(email, password));
 	};
 
@@ -33,6 +34,8 @@ function LoginPage() {
 	return (
 		<FormContainer>
 			<h1>Sign In</h1>
+			{error && <Error variant="danger">{error}</Error>}
+			{loading && <Loading />}
 			<Form onSubmit={submitHandler}>
 				<Form.Group controlId="email">
 					<Form.Label>Email Address</Form.Label>
