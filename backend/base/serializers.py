@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import RefreshToken, AccessToken
 from .models import Product
 
 class UserSerializer(serializers.ModelSerializer):
@@ -17,7 +17,7 @@ class UserSerializer(serializers.ModelSerializer):
             return obj.is_staff
 
         def get_name(self, obj):
-            name = obj.first_name
+            name = obj.name
             if name == '':
                 name = obj.email
 
@@ -30,7 +30,7 @@ class UserSerializerWithToken(UserSerializer):
         fields = ['id', '_id', 'username', 'email', 'name', 'isAdmin']
 
     def get_token(self, obj):
-        token = RefreshToken.for_user(obj)
+        token = AccessToken.for_user(obj)
         return str(token.access_token)
 
 class ProductSerializer(serializers.ModelSerializer):

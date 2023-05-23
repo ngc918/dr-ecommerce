@@ -6,6 +6,7 @@ import Loading from "../components/Loading";
 import ErrorMessage from "../components/Error";
 import FormContainer from "../components/FormContainer";
 import { login, register } from "../actions/userActions";
+import axios from "axios";
 
 function RegisterPage() {
 	const [name, setName] = useState("");
@@ -23,9 +24,9 @@ function RegisterPage() {
 	const userRegister = useSelector((state) => state.userRegister);
 	const { error, loading, userInfo } = userRegister;
 
-	const submitHandler = (e) => {
+	const submitHandler = async (e) => {
 		e.preventDefault();
-		if (password != confirmPassword) {
+		if (password !== confirmPassword) {
 			setErrorMessage("Passwords do not match");
 		} else {
 			dispatch(register(name, email, password));
