@@ -42,6 +42,9 @@ function RegisterPage() {
 	return (
 		<FormContainer>
 			<h1>Register</h1>
+			{errorMessage && (
+				<ErrorMessage variant="danger">{errorMessage}</ErrorMessage>
+			)}
 			{loading && <Loading />}
 			<Form onSubmit={submitHandler}>
 				<Form.Group controlId="name">
